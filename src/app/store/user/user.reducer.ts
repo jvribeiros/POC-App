@@ -9,57 +9,58 @@ import {
     getUserError
 } from './user.actions';
 
-export const initialState = {
-    user: {},
-    isLoading: false,
+export interface UserState {
+  user:   User;
+  error:  string;
+  status: 'init' | 'loading' | 'loaded' | 'error';
+}
+
+export const initialState: UserState = {
+  user:   new User,
+  error:  '',
+  status: 'init',
 }
 
 export const userReducer = createReducer(
   initialState,
-  on(getUser, (state) =>
-  {
-    return {
-        ...state,
-        loadingStatus: true
-    }
-  }),
-  on(getUserSuccess, (state, user) =>
+  on(getUser, (state) => {return {...state, status: 'loading'}}),
+
+  on(getUserSuccess, (state, { user }) =>
   {
     return {
         ...state,
         user: user,
-        loadingStatus: false
+        status: 'loaded'
     }
   }),
-  on(getUserError, (state) =>
+
+  on(getUserError, (state, { response }) =>
   {
     return {
         ...state,
-        user: {},
-        loadingStatus: false
+        user: new User,
+        error: response.message,
+        status: 'error'
     }
   }),
-  on(register, (state) =>
-  {
-    return {
-        ...state,
-        loadingStatus: true
-    }
-  }),
-  on(registerSuccess, (state, newUser) =>
+
+  on(register, (state) => { return { ...state, status: 'loading' } }),
+
+  on(registerSuccess, (state, { newUser }) =>
   {
     return {
         ...state,
         user: newUser,
-        isLoading: false,
+        status: 'loaded',
     }
   }),
-  on(registerError, (state) =>
+  on(registerError, (state, { error }) =>
   {
     return {
         ...state,
-        user: {},
-        isLoading: false,
+        user: new User,
+        error: error.message,
+        status: 'error',
     }
   }),
 );

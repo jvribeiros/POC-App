@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { UserState } from './store/user/user.reducer';
+import { selectUserInfo } from './store/user/user.selectors';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'POC-App';
+
+  constructor(private store: Store) {}
+
 }

@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { User } from '../models/user.model';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-
-export interface Credentials {
-  username: string;
-  password: string;
-}
+import { Store } from '@ngrx/store';
+import { User, Credentials } from '../models/user.model';
+import { getUser } from '../store/user/user.actions';
 
 @Component({
   selector: 'auth-component',
@@ -16,17 +12,17 @@ export interface Credentials {
 export class AuthComponent {
   username: string = '';
   password: string = '';
-  keepConnected: boolean = false;
+  credentials: Credentials = new Credentials;
 
-  SignIn(username: string, password: string, keepConnected: boolean)
+  constructor(private store: Store) {}
+
+  SignIn()
   {
-    console.log("INPUT USERNAME: ", this.username);
-    console.log("INPUT PASSWORD: ", this.password);
-    console.log("KEEP CONNECTED INPUT: ", this.keepConnected);
+    this.credentials.email = this.username;
+    this.credentials.password = this.password
+
+    this.store.dispatch(getUser({credentials: this.credentials}));
+
+    this.credentials = new Credentials;
   };
-
-  CreateUser()
-  {
-    console.log("CREATE USER CALLED!")
-  }
 }

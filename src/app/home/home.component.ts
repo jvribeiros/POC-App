@@ -1,16 +1,13 @@
 import {Component} from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Asset } from '../models/asset.model';
+import { selectUserInfo } from '../store/user/user.selectors';
+import { selectAssetsList } from '../store/user-assets/userAssets.selectors';
+import { AppState } from '../store/app.state';
 import { User } from '../models/user.model';
-import * as AssetsActions from '../store/assets/assets.actions';
-import * as AssetsReducers from '../store/assets/assets.reducer';
-
-const ELEMENT_DATA: Asset[] = [
-  {name: 'Bitcoin',  symbol: 'BTC',  paidPrice: 1,   currentPrice: 1.7},
-  {name: 'Ethereum', symbol: 'ETH',  paidPrice: 2.3, currentPrice: 1.5},
-  {name: 'Cardano',  symbol: 'ADA',  paidPrice: 1,   currentPrice: 3.1},
-  {name: 'Nano',     symbol: 'Nano', paidPrice: 2,   currentPrice: 2.7},
-]
+import { getAssetsByUser } from '../store/user-assets/userAssets.actions';
 
 @Component({
   selector: 'home-component',
@@ -19,24 +16,28 @@ const ELEMENT_DATA: Asset[] = [
 })
 
 export class HomeComponent implements OnInit {
-  newAsset: Asset = new Asset;
+  constructor( private store: Store<AppState>, private route: Router ){ }
+
+  assetsList$ = this.store.select(selectAssetsList)
+  user$ = this.store.select(selectUserInfo);
   user: User = new User;
 
-  constructor(
-    private store: Store,
-    private assetState: Store<AssetsReducers.State>,
-  ){ }
+  dataSource: Asset[] = [];
+  displayedColumns: string[] = ['name', 'symbol', 'paidPrice', 'currentPrice', 'gain', 'action'];
 
   ngOnInit() {
-    this.store.dispatch(AssetsActions.getAssetsByUser({ id: this.user.id}));
-  }
+    
+    this.user$ = this.store.select(selectUserInfo);
+    this.assetsList$ = this.store.select(selectAssetsList);
+    
+    this.store.dispatch(getAssetsByUser({ id: 1 }))
 
-  displayedColumns: string[] = ['name', 'symbol', 'paidPrice', 'currentPrice', 'gain'];
-  dataSource = ELEMENT_DATA; 
+    // this.dataSource = this.store.select(selectAssetsList).subscribe(list => { return list })
+  }
 
   AddData()
   {
-    this.store.dispatch(AssetsActions.insertAsset({ asset: this.newAsset }));
-    console.log("STORE: ", this.store);
+    console.log(this.user);
+    this.route.navigate(["registerasset"])
   }
 }

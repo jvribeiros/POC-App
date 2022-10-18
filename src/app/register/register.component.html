@@ -1,0 +1,25 @@
+<div class="center-div">
+    <mat-card class="auth-card">
+        <form class="form-class">
+          <mat-form-field class="input-class">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Jon Doe" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" >
+          </mat-form-field>
+          <mat-form-field class="input-class">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="exemplo@teste.com" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" >
+          </mat-form-field>
+          <mat-form-field class="input-class">
+            <mat-label>Senha de acesso</mat-label>
+            <input matInput type="password" placeholder="Senha" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" >
+          </mat-form-field>
+        </form>
+          <button
+            class="button-class"
+            mat-raised-button
+            color="primary"
+            (click)="CreateUser()"
+            >
+            Registrar
+         </button>
+    </mat-card>

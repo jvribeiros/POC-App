@@ -1,10 +1,11 @@
-export interface User {
-    id: number,
-    name: string,
-    credentials: Credentials
+export class User {
+    id: number = 0;
+    name: string = '';
+    email: string = '';
+    password: string = '';
 }
 
-export interface Credentials {
-    email: string,
-    password: string,
+export class Credentials {
+    email: string = '';
+    password: string = '';
 }

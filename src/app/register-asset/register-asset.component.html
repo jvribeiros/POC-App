@@ -1,0 +1,31 @@
+<div class="center-div">
+    <mat-card class="auth-card">
+        <form class="form-class">
+          <mat-label>Ativo</mat-label>
+          <mat-select [(ngModel)]="asset" [ngModelOptions]="{standalone: true}">
+            <mat-select-trigger>
+              {{asset.name}}
+            </mat-select-trigger>
+            <mat-option outlined *ngFor="let asset of AVAILABLE_DATA" [value]="asset">{{asset.name}}</mat-option>
+            <div class="name-class">
+              {{ asset.name }}
+            </div>
+          </mat-select>
+          <mat-form-field class="input-class">
+            <mat-label>Preço Pago</mat-label>
+            <input matInput [(ngModel)]="paidPrice" [ngModelOptions]="{standalone: true}" >
+          </mat-form-field>
+          <mat-form-field class="input-class">
+            <mat-label>Quantidade</mat-label>
+            <input matInput [(ngModel)]="quantity" [ngModelOptions]="{standalone: true}" >
+          </mat-form-field>
+        </form>
+          <button
+            class="button-class"
+            mat-raised-button
+            color="primary"
+            (click)="CreateUserAsset()"
+            >
+            Registrar
+         </button>
+    </mat-card>
