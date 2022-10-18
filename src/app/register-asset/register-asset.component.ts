@@ -33,6 +33,10 @@ export class RegisterAssetComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.store.select(selectUserInfo);
+
+    this.store.select(selectUserInfo).subscribe(userInfo => { 
+      this.user = userInfo
+    });
   }
 
   CreateUserAsset()

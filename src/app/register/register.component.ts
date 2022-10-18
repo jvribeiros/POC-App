@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { User, Credentials } from '../models/user.model';
 import { register } from '../store/user/user.actions';
 import { Router } from '@angular/router';
-import { selectUserInfo } from '../store/user/user.selectors';
 
 @Component({
   selector: 'register',

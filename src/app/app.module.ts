@@ -59,7 +59,8 @@ import { assetReducer } from './store/user-assets/userAssets.reducer';
     MatDialogModule,
     MatIconModule,
     MatSelectModule,
-    StoreModule.forRoot({ user: userReducer, asset: assetReducer }),
+    StoreModule.forRoot({ asset: assetReducer }),
+    StoreModule.forRoot({ user: userReducer }),
     EffectsModule.forRoot([UserEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],

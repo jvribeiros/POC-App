@@ -39,10 +39,15 @@
         <th mat-header-cell *matHeaderCellDef>Ganho</th>
         <td mat-cell *matCellDef="let element"> {{ (((element.currentPrice - element.paidPrice)/element.paidPrice ) * 100).toFixed(2) }}% </td>
       </ng-container>
+
+      <ng-container matColumnDef="realGain">
+        <th mat-header-cell *matHeaderCellDef>USD</th>
+        <td mat-cell *matCellDef="let element"> USD {{ ( (element.paidPrice * element.quantity) - (element.quantity * element.currentPrice)).toFixed(2) }} </td>
+      </ng-container>
       
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Ação</th>
-        <button mat-icon-button *matCellDef="let element"><mat-icon svgIcon="thumb-up" aria-hidden="false" color="primary">Excluir</mat-icon></button> 
+        <button mat-icon-button *matCellDef="let element" (click)="DeleteData(element)"><mat-icon svgIcon="thumb-up" aria-hidden="false" color="primary">X</mat-icon></button> 
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

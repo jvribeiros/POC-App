@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { UserState } from './store/user/user.reducer';
-import { selectUserInfo } from './store/user/user.selectors';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,10 @@ import { selectUserInfo } from './store/user/user.selectors';
 export class AppComponent {
   title = 'POC-App';
 
-  constructor(private store: Store) {}
+  constructor(private route: Router ){ }
 
+  SignOut()
+  {
+    this.route.navigate(["/"]);
+  }
 }

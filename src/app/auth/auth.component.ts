@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { User, Credentials } from '../models/user.model';
 import { getUser } from '../store/user/user.actions';
+import { getAssetsByUser } from '../store/user-assets/userAssets.actions';
 
 @Component({
   selector: 'auth-component',

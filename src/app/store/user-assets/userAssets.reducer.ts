@@ -17,12 +17,12 @@ export interface AssetState {
   assetsList: Asset[];
 }
 
-export const initialState: AssetState = {
-  assetsList: ELEMENT_DATA,
+export const initialAssetState: AssetState = {
+  assetsList: [],
 }
 
 export const assetReducer = createReducer(
-  initialState,
+  initialAssetState,
   on(getAssetsByUser, (state, { id }) =>
   {
     const response: any = {
