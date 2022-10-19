@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User, Credentials } from '../models/user.model';
-import { getUser } from '../store/user/user.actions';
-import { getAssetsByUser } from '../store/user-assets/userAssets.actions';
+import { Credentials } from '../../models/user.model';
+import { getUser } from '../../store/user/user.actions';
 
 @Component({
   selector: 'auth-component',

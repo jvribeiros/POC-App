@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User, Credentials } from '../models/user.model';
-import { register } from '../store/user/user.actions';
+import { User } from '../../models/user.model';
+import { register } from '../../store/user/user.actions';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { User } from '../../models/user.model'
+import { User } from 'src/app/models/user.model';
 import { Asset } from 'src/app/models/asset.model';
 import {
     register,
@@ -69,6 +69,7 @@ export const userReducer = createReducer(
         status: 'loaded',
     }
   }),
+  
   on(registerError, (state, { error }) =>
   {
     return {

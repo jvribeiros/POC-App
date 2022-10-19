@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { Asset } from 'src/app/models/asset.model';
-import {insertAsset} from '../store/user-assets/userAssets.actions';
-import { selectUserInfo } from '../store/user/user.selectors';
-import { AppState } from '../store/app.state';
+import { Asset } from '../../models/asset.model';
+import {insertAsset} from '../../store/user/user.actions';
+import { selectUserInfo } from '../../store/user/user.selectors';
+import { AppState } from '../../store/app.state';
 import { OnInit } from '@angular/core';
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'register-asset',

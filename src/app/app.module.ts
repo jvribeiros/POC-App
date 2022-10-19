@@ -17,13 +17,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
-import { MatOption } from '@angular/material/core';
 
 // Components imports
-import { AuthComponent } from './auth/auth.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { RegisterAssetComponent } from './register-asset/register-asset.component';
+import { AuthComponent } from './components/auth/auth.component';
+import  { HomeComponent } from '../app/components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
+import { RegisterAssetComponent } from './components/register-asset/register-asset.component';
 
 import { environment } from '../environments/environment';
 
@@ -33,7 +32,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
-import { assetReducer } from './store/user-assets/userAssets.reducer';
 
 @NgModule({
   declarations: [
@@ -59,7 +57,6 @@ import { assetReducer } from './store/user-assets/userAssets.reducer';
     MatDialogModule,
     MatIconModule,
     MatSelectModule,
-    StoreModule.forRoot({ asset: assetReducer }),
     StoreModule.forRoot({ user: userReducer }),
     EffectsModule.forRoot([UserEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
