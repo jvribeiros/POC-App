@@ -47,7 +47,7 @@ import { Injectable } from '@angular/core';
             'Content-Type': 'application/json',
           };
 
-        this.http.post(`https://localhost:5001/api/User/RegisterUser`, newUser)
+        this.http.post(`http://localhost:5001/api/User/RegisterUser`, newUser)
         .subscribe(
           (response: any) => {
             this.route.navigate(["home"])

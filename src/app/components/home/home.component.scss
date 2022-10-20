@@ -8,6 +8,17 @@ table {
     margin-bottom: 2vh;
 }
 
+.form-class {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8vh;
+}
+
+.input-class {
+    width: 50vw;
+}
+
 .exit-button {
     margin-left: 55vw;
 }

@@ -50,11 +50,37 @@
       
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Ação</th>
-        <button mat-icon-button *matCellDef="let element" (click)="DeleteData(element)"><mat-icon svgIcon="thumb-up" aria-hidden="false" color="primary">X</mat-icon></button> 
+        <button mat-icon-button *matCellDef="let element" (click)="DeleteData(element)"><mat-icon aria-hidden="false" color="primary">X</mat-icon></button> 
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-</div>
+  <div class="form-class">
+      <span>Envie uma notificação aos demais usuários!</span>
+      <mat-form-field class="input-class">
+        <mat-label>Mensagem</mat-label>
+        <input matInput [(ngModel)]="message" [ngModelOptions]="{standalone: true}" >
+        
+      </mat-form-field>
+      <button mat-raised-button (click)="SendNotification()" class="demo-button">Enviar</button>
+
+      <div class="container">
+        <span class="chat-title">Últimas Notificações</span>
+        <div class="messages">
+            <ng-template ngFor let-notification [ngForOf]="notifications" let-i="index">
+                <div *ngIf="notification.name == user.name" class="message-line me">
+                    <div class="message me">
+                        <div class="username me">{{notification.name}}: {{notification.message}}</div>
+                    </div>
+                </div>
+                <div *ngIf="notification.name != user.name" class="notification-line other">
+                    <div class="notification other">
+                        <div class="username other">{{notification.name}}</div>
+                        <div>{{notification.message}}</div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
